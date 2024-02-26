@@ -278,13 +278,13 @@ class CameraViewController1: UIViewController, AVCaptureVideoDataOutputSampleBuf
 }
 
 @available(iOS 13.0, *)
-struct CameraViewSDK: UIViewControllerRepresentable {
+public struct CameraViewSDK: UIViewControllerRepresentable {
 
-    func makeUIViewController(context: Context) -> UIViewController {
+    public func makeUIViewController(context: Context) -> UIViewController {
         return CameraViewController1()
     }
 
-    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
+    public func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
 }
 
 class CameraDelegate: NSObject, AVCapturePhotoCaptureDelegate {
