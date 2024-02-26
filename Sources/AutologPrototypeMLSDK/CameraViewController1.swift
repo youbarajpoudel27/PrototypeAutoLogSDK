@@ -227,7 +227,7 @@ class CameraViewController1: UIViewController, AVCaptureVideoDataOutputSampleBuf
     }
     
     
-    func showAlert() {
+    public   func showAlert() {
         // Create the alert controller
         let alertController = UIAlertController(title: "Snap Alert", message: "Significant Grain Detected , You can snap the capture.", preferredStyle: .alert)
         
@@ -250,7 +250,7 @@ class CameraViewController1: UIViewController, AVCaptureVideoDataOutputSampleBuf
    
     //Phone's Util specific functions
     //MARK : Camera Permissions
-    func checkCameraPermissions() {
+    public  func checkCameraPermissions() {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
             // Permission has been granted before
             case .authorized:
@@ -278,7 +278,7 @@ class CameraViewController1: UIViewController, AVCaptureVideoDataOutputSampleBuf
 }
 
 @available(iOS 13.0, *)
-public struct CameraViewSDK: UIViewControllerRepresentable {
+ struct CameraViewSDK: UIViewControllerRepresentable {
 
     public func makeUIViewController(context: Context) -> UIViewController {
         return CameraViewController1()
@@ -287,15 +287,15 @@ public struct CameraViewSDK: UIViewControllerRepresentable {
     public func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
 }
 
-class CameraDelegate: NSObject, AVCapturePhotoCaptureDelegate {
+public class CameraDelegate: NSObject, AVCapturePhotoCaptureDelegate {
     
     private let completion: (UIImage?) -> Void
     
-    init(completion: @escaping (UIImage?) -> Void) {
+    public init(completion: @escaping (UIImage?) -> Void) {
         self.completion = completion
     }
     
-    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+    public  func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         if let error {
             print("CameraManager: Error while capturing photo: \(error)")
             completion(nil)
@@ -310,7 +310,7 @@ class CameraDelegate: NSObject, AVCapturePhotoCaptureDelegate {
         }
     }
     
-    func saveImageToGallery(_ image: UIImage) {
+    public func saveImageToGallery(_ image: UIImage) {
         PHPhotoLibrary.shared().performChanges {
             PHAssetChangeRequest.creationRequestForAsset(from: image)
         } completionHandler: { success, error in
